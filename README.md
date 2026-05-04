@@ -1,66 +1,132 @@
 # LLM Selection Skill
 
-大模型选型指南 Skill —— 根据使用场景、预算、合规要求等条件，系统化推荐最合适的大语言模型。
+A comprehensive decision-making framework for selecting the most suitable Large Language Model (LLM) based on your specific use cases, budget constraints, and compliance requirements.
 
-## 功能特性
+## 🌟 Features
 
-| 能力 | 说明 |
-|------|------|
-| 场景分析 | 聊天/代码/创作/推理/多模态等 10+ 场景类型 |
-| 国内外覆盖 | OpenAI/Claude/Gemini + 混元/通义/文心/DeepSeek/GLM 等 |
-| 硬约束筛选 | 数据合规、上下文长度、部署方式、多模态能力 |
-| 评分矩阵 | 推理30% + 多模态25% + 上下文20% + 速度15% + 成本10% |
-| 成本估算 | 根据调用量自动计算各模型月成本 |
-| 落地建议 | 小流量验证方案 + Fallback 策略 |
+| Capability | Description |
+|------------|-------------|
+| **Scenario Analysis** | 10+ scenario types (chat, coding, creative writing, reasoning, multimodal, etc.) |
+| **Global & Chinese Models** | OpenAI/Claude/Gemini + Hunyuan/Qwen/ERNIE/DeepSeek/GLM/Kimi/Doubao |
+| **Hard Constraint Filtering** | Data compliance, context length, deployment mode, multimodal support |
+| **Scoring Matrix** | Reasoning 30% + Multimodal 25% + Context 20% + Speed 15% + Cost 10% |
+| **Cost Estimation** | Automatically calculate monthly costs based on usage volume |
+| **Implementation Guide** | Canary testing plan + Fallback strategy |
 
-## 文件结构
+## 📁 File Structure
 
 ```
 llm-selection/
-├── SKILL.md                    ← Skill 主入口
+├── SKILL.md                    ← Skill entry point
 ├── references/
-│   ├── model_zoo.md           ← 30+ 主流模型详细对比数据
-│   └── selection_framework.md ← 选型框架、评分矩阵、场景速查表
+│   ├── model_zoo.md           ← 30+ mainstream model comparisons
+│   └── selection_framework.md ← Selection framework, scoring matrix, scenario cheat sheet
 └── scripts/
-    └── cost_estimator.py      ← 成本估算脚本
+    └── cost_estimator.py      ← Cost estimation script
 ```
 
-## 安装
+## 🚀 Installation
 
-将本仓库内容放入 CodeBuddy `.codebuddy/skills/llm-selection/` 目录，然后在 CodeBuddy 中加载 skill。
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/dimayip/llm-selection.git
+   ```
 
-## 触发关键词
+2. Copy to your CodeBuddy skills directory:
+   ```bash
+   cp -r llm-selection ~/.codebuddy/skills/
+   ```
 
-- "帮我选型"、"该选哪个模型"
-- "XX场景用什么模型"、"对比一下XX和XX"
-- "大模型选型"、"成本预估"
+3. Restart CodeBuddy or reload skills
 
-## 使用方法
+## 💡 Usage
 
-在 CodeBuddy 对话中输入触发关键词，Skill 将自动启动 5 步选型流程：
+Trigger the skill by using keywords in your CodeBuddy conversation:
 
-1. **收集需求** — 询问使用场景、预算、数据合规要求
-2. **硬约束初筛** — 根据合规/上下文/部署方式过滤模型
-3. **评分排序** — 多维度打分，输出 Top 推荐
-4. **输出选型报告** — Top3 推荐 + 成本对比表 + 落地建议
-5. **成本估算** — 运行 `scripts/cost_estimator.py` 计算月成本
+- "Help me choose a model"
+- "Which model for [scenario]"
+- "Compare Model A and Model B"
+- "LLM selection"
+- "Cost estimation"
 
-## 支持的模型
+The skill will automatically启动 a 5-step selection process:
 
-### 国际模型
-- OpenAI: GPT-4o, GPT-4o-mini, o1, o3
-- Anthropic: Claude 3.5 Sonnet, Claude 3.7 Sonnet, Claude 4 Sonnet
-- Google: Gemini 2.0 Flash, Gemini 2.5 Pro
+### Step 1: Requirement Collection
+- Ask about: use case, budget, data compliance requirements
+- Optional: context length, QPS, deployment preference, multimodal needs
 
-### 国内模型
-- 腾讯混元: Hunyuan-Turbo, Hunyuan-Pro, Hunyuan-T1
-- 阿里通义: Qwen-Max, Qwen-Plus, Qwen-Turbo, Qwen3-235B
-- 百度文心: ERNIE-4.5-Turbo, ERNIE-Spark
-- DeepSeek: DeepSeek-V3, DeepSeek-R1
-- 智谱 GLM: GLM-4-Plus, GLM-4-Air
-- 月之暗面 Kimi: Moonshot-v1-128k
-- 字节豆包: Doubao-Pro-32k
+### Step 2: Hard Constraint Filtering
+- Data compliance → Only Chinese models for domestic business
+- Context length → Filter out models that don't meet requirements
+- Deployment mode → API / Can be local / Must be local
 
-## 许可证
+### Step 3: Scoring & Ranking
+Weighted scoring:
+- Task match 40% + Cost 30% + Latency 15% + Stability 10% + Usability 5%
 
-MIT License
+### Step 4: Selection Report
+Output includes:
+- Top 3 recommendations (Primary / Alternative / Best Value)
+- Cost comparison table
+- Implementation suggestions (canary testing + fallback strategy)
+
+### Step 5: Cost Estimation
+Run the cost estimator:
+```bash
+python3 scripts/cost_estimator.py
+```
+
+## 🌐 Supported Models
+
+### International Models
+- **OpenAI**: GPT-4o, GPT-4o-mini, o1, o3
+- **Anthropic**: Claude 3.5 Sonnet, Claude 3.7 Sonnet, Claude 4 Sonnet
+- **Google**: Gemini 2.0 Flash, Gemini 2.5 Pro
+
+### Chinese Models
+- **Tencent Hunyuan**: Hunyuan-Turbo, Hunyuan-Pro, Hunyuan-T1
+- **Alibaba Qwen**: Qwen-Max, Qwen-Plus, Qwen-Turbo, Qwen3-235B
+- **Baidu ERNIE**: ERNIE-4.5-Turbo, ERNIE-Spark
+- **DeepSeek**: DeepSeek-V3, DeepSeek-R1
+- **Zhipu GLM**: GLM-4-Plus, GLM-4-Air
+- **Moonshot Kimi**: Moonshot-v1-128k
+- **ByteDance Doubao**: Doubao-Pro-32k
+
+## 📊 Cost Estimation
+
+The `scripts/cost_estimator.py` script helps you estimate monthly costs:
+
+```bash
+python3 scripts/cost_estimator.py [daily_calls] [avg_input_tokens] [avg_output_tokens]
+```
+
+Example:
+```bash
+python3 scripts/cost_estimator.py 10000 500 300
+```
+
+This will output a comparison table with estimated monthly costs for all supported models.
+
+## 🔍 Selection Framework
+
+For detailed information about the selection framework, scoring matrix, and scenario-specific recommendations, see:
+
+- **[Model Zoo](references/model_zoo.md)** - Detailed comparison data for 30+ mainstream models
+- **[Selection Framework](references/selection_framework.md)** - Scoring matrix, scenario cheat sheet, and implementation guide
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📧 Contact
+
+- GitHub Issues: [https://github.com/dimayip/llm-selection/issues](https://github.com/dimayip/llm-selection/issues)
+- Author: bellchen
+
+---
+
+⭐ If you find this skill useful, please consider giving it a star on GitHub!
