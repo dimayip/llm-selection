@@ -27,17 +27,11 @@ llm-selection/
 
 ## 🚀 Installation
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/dimayip/llm-selection.git
-   ```
+Run the following command to install the skill:
 
-2. Copy to your CodeBuddy skills directory:
-   ```bash
-   cp -r llm-selection ~/.codebuddy/skills/
-   ```
-
-3. Restart CodeBuddy or reload skills
+```bash
+npx skills add https://github.com/dimayip/llm-selection.git
+```
 
 ## 💡 Usage
 

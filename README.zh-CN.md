@@ -27,17 +27,11 @@ llm-selection/
 
 ## 🚀 安装方法
 
-1. 克隆本仓库：
-   ```bash
-   git clone https://github.com/dimayip/llm-selection.git
-   ```
+运行以下命令安装该 Skill：
 
-2. 复制到 CodeBuddy skills 目录：
-   ```bash
-   cp -r llm-selection ~/.codebuddy/skills/
-   ```
-
-3. 重启 CodeBuddy 或重新加载 skills
+```bash
+npx skills add https://github.com/dimayip/llm-selection.git
+```
 
 ## 💡 使用方法
 
